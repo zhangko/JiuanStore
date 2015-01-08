@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--login_strings-->
+    <string name="login_account">Account</string>
+    <string name="login_password">Password</string>
+    <string name="login_input_account">Please enter the account</string>
+    <string name="login_input_password">Please enter the password</string>
+    <string name="login_menu">Login</string>
+    <string name="login_time_out">Login timed out</string>
+</resources>

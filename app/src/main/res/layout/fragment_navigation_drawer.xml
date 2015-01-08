@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <com.jiuan.oa.android.app.store.ui.widget.NavigationHeaderView
+        android:id="@+id/header_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        tools:context="com.jiuan.oa.android.app.store.ui.NavigationDrawerFragment" />
+
+    <ListView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        tools:context="com.jiuan.oa.android.app.store.ui.NavigationDrawerFragment" />
+
+</LinearLayout>
+

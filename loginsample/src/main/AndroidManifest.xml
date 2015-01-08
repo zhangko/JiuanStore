@@ -1,0 +1,42 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jiuan.oa.android.app.loginsample">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!--自定义权限-->
+    <uses-permission android:name="com.jiuan.oa.android.library.protocol.login.permission.BROADCAST" />
+    <uses-permission android:name="com.jiuan.oa.android.app.store.permission.BROADCAST" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name">
+        <activity android:name="com.jiuan.oa.android.app.loginsample.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".LoginReceiver" android:permission="com.jiuan.oa.android.library.protocol.login.permission.BROADCAST">
+            <intent-filter>
+                <action android:name="com.jiuan.oa.android.library.protocol.login.intent.action.LOGIN_SUCCESS" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".LogoutReceiver" android:permission="com.jiuan.oa.android.app.store.permission.BROADCAST">
+            <intent-filter>
+                <action android:name="com.jiuan.oa.android.app.store.Logout" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".ExitReceiver" android:permission="com.jiuan.oa.android.library.protocol.login.permission.BROADCAST">
+            <intent-filter>
+                <action android:name="com.jiuan.oa.android.library.protocol.login.intent.action.EXIT" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

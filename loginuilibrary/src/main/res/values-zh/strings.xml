@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--login_strings-->
+    <string name="login_account">帐号</string>
+    <string name="login_password">密码</string>
+    <string name="login_input_account">请输入帐号</string>
+    <string name="login_input_password">请输入密码</string>
+    <string name="login_menu">登录</string>
+    <string name="login_time_out">登录超时</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_item_store_home">首页</string>
+    <string name="navigation_item_settings">设置</string>
+    <string name="network_tip">请开启网络</string>
+    <string name="wifi_tip">请开启WIFI</string>
+    <string name="state_install">安装</string>
+    <string name="state_installed">已安装</string>
+    <string name="state_installing">安装中</string>
+    <string name="state_update">升级</string>
+    <string name="time_out">网络连接超时</string>
+</resources>

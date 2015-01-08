@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_primary">#689F38</color>
+    <color name="theme_primary_dark">#558B2F</color>
+    <color name="theme_settings_primary">#455A64</color>
+
+    <color name="background_light_gray">#E6E6E6</color>
+
+    <color name="swipe_color_1">#B6DB49</color>
+    <color name="swipe_color_2">#99CC00</color>
+    <color name="swipe_color_3">#8ABD00</color>
+    <color name="swipe_color_4">#7CAF00</color>
+
+</resources>

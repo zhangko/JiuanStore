@@ -1,0 +1,48 @@
+<resources>
+
+    <style name="Theme.JiuanStore.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
+        <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_light</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/abc_primary_text_disable_only_material_dark</item>
+        <item name="android:textColorPrimaryInverseDisableOnly">@color/abc_primary_text_disable_only_material_light</item>
+        <item name="android:textColorSecondary">@color/abc_secondary_text_material_dark</item>
+        <item name="android:textColorSecondaryInverse">@color/abc_secondary_text_material_light</item>
+        <item name="android:textColorTertiary">@color/abc_secondary_text_material_dark</item>
+        <item name="android:textColorTertiaryInverse">@color/abc_secondary_text_material_light</item>
+
+        <item name="colorPrimary">@color/theme_primary</item>
+        <item name="colorPrimaryDark">@color/theme_primary_dark</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.JiuanStore" parent="Theme.JiuanStore.Base" />
+
+    <style name="Theme.JiuanStore.Settings" parent="Theme.AppCompat.Light.DarkActionBar" >
+        <item name="colorPrimary">@color/theme_settings_primary</item>
+    </style>
+
+    <style name="JiuanStore" />
+
+    <style name="JiuanStore.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">?attr/listPreferredItemPaddingLeft</item>
+        <item name="android:paddingRight">?attr/listPreferredItemPaddingRight</item>
+        <item name="android:minHeight">?attr/listPreferredItemHeightSmall</item>
+    </style>
+
+    <style name="JiuanStore.ActivatedTextView" parent="JiuanStore.TextView">
+        <item name="android:background">@drawable/activated_background</item>
+    </style>
+
+    <style name="JiuanStore.PressedTextView" parent="JiuanStore.TextView">
+        <item name="android:background">@drawable/pressed_background</item>
+    </style>
+
+
+</resources>

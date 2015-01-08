@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@id/login_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="48.0dip"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16.0dip"
+        android:layout_marginRight="16.0dip"
+        android:layout_marginTop="16.0dip"
+        android:hint="@string/login_account"
+        android:singleLine="true" />
+
+    <RelativeLayout
+        android:id="@id/login_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_edittext"
+        android:layout_marginLeft="16.0dip"
+        android:layout_marginRight="16.0dip">
+
+        <EditText
+            android:id="@id/login_password_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="48.0dip"
+            android:layout_centerVertical="true"
+            android:hint="@string/login_password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:id="@id/login_forget_password_imagebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8.0dip"
+            android:background="@drawable/button_forget_sn_selector" />
+    </RelativeLayout>
+
+</RelativeLayout>
+

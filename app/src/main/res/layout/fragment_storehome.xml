@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jiuan.oa.android.app.store.ui.widget.MultiSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swiperefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:scrollbars="vertical">
+
+    </android.support.v7.widget.RecyclerView>
+
+</com.jiuan.oa.android.app.store.ui.widget.MultiSwipeRefreshLayout>
+

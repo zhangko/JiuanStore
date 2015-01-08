@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--login_ids-->
+    <item name="login_edittext" type="id" />
+    <item name="login_password_layout" type="id" />
+    <item name="login_password_edittext" type="id" />
+    <item name="login_forget_password_imagebutton" type="id" />
+    <item name="login_action_send" type="id" />
+</resources>

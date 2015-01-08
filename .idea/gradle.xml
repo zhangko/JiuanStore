@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.2.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/accesshttplibrary" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/loginhttplibrary" />
+            <option value="$PROJECT_DIR$/loginprotocollibrary" />
+            <option value="$PROJECT_DIR$/loginsample" />
+            <option value="$PROJECT_DIR$/loginuilibrary" />
+            <option value="$PROJECT_DIR$/oahttplibrary" />
+            <option value="$PROJECT_DIR$/storehttplibrary" />
+            <option value="$PROJECT_DIR$/utillibrary" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
+

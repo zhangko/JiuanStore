@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JiuanStore.iml" filepath="$PROJECT_DIR$/JiuanStore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/accesshttplibrary/accesshttplibrary.iml" filepath="$PROJECT_DIR$/accesshttplibrary/accesshttplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loginhttplibrary/loginhttplibrary.iml" filepath="$PROJECT_DIR$/loginhttplibrary/loginhttplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loginprotocollibrary/loginprotocollibrary.iml" filepath="$PROJECT_DIR$/loginprotocollibrary/loginprotocollibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loginsample/loginsample.iml" filepath="$PROJECT_DIR$/loginsample/loginsample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loginuilibrary/loginuilibrary.iml" filepath="$PROJECT_DIR$/loginuilibrary/loginuilibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oahttplibrary/oahttplibrary.iml" filepath="$PROJECT_DIR$/oahttplibrary/oahttplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/storehttplibrary/storehttplibrary.iml" filepath="$PROJECT_DIR$/storehttplibrary/storehttplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utillibrary/utillibrary.iml" filepath="$PROJECT_DIR$/utillibrary/utillibrary.iml" />
+    </modules>
+  </component>
+</project>
+

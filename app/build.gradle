@@ -49,6 +49,10 @@ android {
             applicationId "com.jiuan.oa.android.app.store"
             versionName "1.1.3"
         }
+        bloomsky {
+            applicationId "com.bloomsky.oa.android.app.store"
+            versionName "1.1.3"
+        }
     }
 }
 dependencies {

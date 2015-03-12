@@ -6,6 +6,6 @@ public class MainActivity extends BaseMainActivity implements NavigationDrawerFr
 
     @Override
     protected int serverType() {
-        return OAServer.JIUAN;
+        return OAServer.BLOOMSKY;
     }
 }

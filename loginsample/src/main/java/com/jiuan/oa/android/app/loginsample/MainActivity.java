@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.jiuan.oa.android.library.http.OAServer;
 import com.jiuan.oa.android.library.http.login.OALoginResponse;
 import com.jiuan.oa.android.library.protocol.login.LoginProtocol;
 import com.jiuan.oa.android.library.protocol.login.LoginUtils;
@@ -64,13 +65,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login:
-                LoginUtils.startLoginActivity(this, LoginProtocol.REQUEST_LOGIN,false);
+                LoginUtils.startLoginActivity(this, LoginProtocol.REQUEST_LOGIN, OAServer.JIUAN);
                 break;
             case R.id.logout:
-                LoginUtils.startLoginActivity(this, LoginProtocol.REQUEST_LOGOUT,false);
+                LoginUtils.startLoginActivity(this, LoginProtocol.REQUEST_LOGOUT, OAServer.JIUAN);
                 break;
             case R.id.logout_to_login:
-                LoginUtils.startLoginActivity(this, LoginProtocol.REQUEST_LOGOUT_AND_LOGIN,false);
+                LoginUtils.startLoginActivity(this, LoginProtocol.REQUEST_LOGOUT_AND_LOGIN, OAServer.JIUAN);
                 break;
         }
     }

@@ -12,15 +12,19 @@ public class OAAccessRequest extends OARequest {
 
     private static final String PATH_OA_ALL_ACCESS = "/MobileOfficeAutomationAPI/GetAuthorResourceWeb.ashx";
 
-    public static final String PATH_ALL_ACCESS = PATH_ROOT + PATH_OA_ALL_ACCESS;
+    public static final String PATH_JIUAN_ALL_ACCESS = PATH_ROOT_JIUAN + PATH_OA_ALL_ACCESS;
 
-    public static final String PATH_TEST_ALL_ACCESS = PATH_ROOT_TEST + PATH_OA_ALL_ACCESS;
+    public static final String PATH_JIUAN_TEST_ALL_ACCESS = PATH_ROOT_JIUAN_TEST + PATH_OA_ALL_ACCESS;
+
+    public static final String PATH_BLOOMSKY_ALL_ACCESS = PATH_ROOT_BLOOMSKY + PATH_OA_ALL_ACCESS;
 
     private static final String PATH_OA_ONE_ACCESS = "/MobileOfficeAutomationAPI/CheckAuthorResourceWeb.ashx";
 
-    public static final String PATH_ONE_ACCESS = PATH_ROOT + PATH_OA_ONE_ACCESS;
+    public static final String PATH_JIUAN_ONE_ACCESS = PATH_ROOT_JIUAN + PATH_OA_ONE_ACCESS;
 
-    public static final String PATH_TEST_ONE_ACCESS = PATH_ROOT_TEST + PATH_OA_ONE_ACCESS;
+    public static final String PATH_JIUAN_TEST_ONE_ACCESS = PATH_ROOT_JIUAN_TEST + PATH_OA_ONE_ACCESS;
+
+    public static final String PATH_BLOOMSKY_ONE_ACCESS = PATH_ROOT_BLOOMSKY + PATH_OA_ONE_ACCESS;
 
     private String userID;
 

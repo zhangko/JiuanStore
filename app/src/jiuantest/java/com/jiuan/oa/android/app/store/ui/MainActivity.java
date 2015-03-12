@@ -1,9 +1,11 @@
 package com.jiuan.oa.android.app.store.ui;
 
+import com.jiuan.oa.android.library.http.OAServer;
+
 public class MainActivity extends BaseMainActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     @Override
-    protected boolean isTest() {
-        return true;
+    protected int serverType() {
+        return OAServer.JIUAN_TEST;
     }
 }

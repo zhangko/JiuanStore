@@ -13,9 +13,11 @@ public class OALoginRequest extends OARequest {
 
     private static final String PATH_OA_LOGIN = "/MobileOfficeAutomationAPI/LoginWeb.ashx";
 
-    public static final String PATH = PATH_ROOT + PATH_OA_LOGIN;
+    public static final String PATH_JIUAN = PATH_ROOT_JIUAN + PATH_OA_LOGIN;
 
-    public static final String PATH_TEST = PATH_ROOT_TEST + PATH_OA_LOGIN;
+    public static final String PATH_JIUAN_TEST = PATH_ROOT_JIUAN_TEST + PATH_OA_LOGIN;
+
+    public static final String PATH_BLOOMSKY = PATH_ROOT_BLOOMSKY + PATH_OA_LOGIN;
 
     private String account;
 

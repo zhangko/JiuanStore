@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.jiuan.oa.android.library.http.OAServer;
 import com.jiuan.oa.android.library.http.login.OALoginClient;
 import com.jiuan.oa.android.library.http.login.OALoginHttpResponseHandler;
 import com.jiuan.oa.android.library.http.login.OALoginResponse;
@@ -39,6 +40,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
     private boolean isTest = false;
 
+    private int serverType = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,13 +51,29 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         if (getIntent().getExtras() != null) {
             type = getIntent().getExtras().getInt(LoginProtocol.LOGIN_TYPE, LoginProtocol.REQUEST_LOGIN);
             isTest = getIntent().getExtras().getBoolean(LoginProtocol.IS_TEST, false);
+            serverType = getIntent().getExtras().getInt(LoginProtocol.SERVER_TYPE, -1);
         }
 
-        if (isTest) {
-            setTitle("OA_TEST");
+        if (serverType == -1) {
+            if (isTest) {
+                setTitle("OA_TEST");
+            } else {
+                setTitle("OA");
+            }
         } else {
-            setTitle("OA");
+            switch (serverType) {
+                case OAServer.JIUAN:
+                    setTitle("OA_JIUAN");
+                    break;
+                case OAServer.JIUAN_TEST:
+                    setTitle("OA_JIUAN_TEST");
+                    break;
+                case OAServer.BLOOMSKY:
+                    setTitle("OA_BLOOMSKY");
+                    break;
+            }
         }
+
 
         switch (type) {
             case LoginProtocol.REQUEST_LOGIN:
@@ -182,43 +201,85 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             return;
         }
 
-        OALoginClient.requestLogin(LoginActivity.this, account.getText().toString(), MD5Util.get32MD5Capital(password.getText().toString(), MD5Util.UTF_16LE), new OALoginHttpResponseHandler() {
+        if (serverType == -1) {
+            OALoginClient.requestLogin(LoginActivity.this, account.getText().toString(), MD5Util.get32MD5Capital(password.getText().toString(), MD5Util.UTF_16LE), new OALoginHttpResponseHandler() {
 
-            @Override
-            public void onOAStart() {
-                setRequesting(true);
-            }
+                @Override
+                public void onOAStart() {
+                    setRequesting(true);
+                }
 
-            @Override
-            public void onLoginSuccess(OALoginResponse oaLoginResponse) {
-                saveOALoginResponse(oaLoginResponse);
-                sendLoginSuccessBroadcast(oaLoginResponse);
-                resultFinish(oaLoginResponse);
-            }
+                @Override
+                public void onLoginSuccess(OALoginResponse oaLoginResponse) {
+                    saveOALoginResponse(oaLoginResponse);
+                    sendLoginSuccessBroadcast(oaLoginResponse);
+                    resultFinish(oaLoginResponse);
+                }
 
-            @Override
-            public void onLoginFailure(String msg) {
-                toast(msg);
-            }
+                @Override
+                public void onLoginFailure(String msg) {
+                    toast(msg);
+                }
 
-            @Override
-            public void onOAError(String msg) {
-                toast(msg);
-            }
+                @Override
+                public void onOAError(String msg) {
+                    toast(msg);
+                }
 
-            @Override
-            public void onOAFinish() {
-                setRequesting(false);
-            }
+                @Override
+                public void onOAFinish() {
+                    setRequesting(false);
+                }
 
-            @Override
-            public void onOAExceptionFinish() {
-                toast(getString(R.string.login_time_out));
-                setRequesting(false);
-            }
+                @Override
+                public void onOAExceptionFinish() {
+                    toast(getString(R.string.login_time_out));
+                    setRequesting(false);
+                }
 
 
-        }, isTest);
+            }, isTest);
+        } else {
+            OALoginClient.requestLogin(LoginActivity.this, account.getText().toString(), MD5Util.get32MD5Capital(password.getText().toString(), MD5Util.UTF_16LE), new OALoginHttpResponseHandler() {
+
+                @Override
+                public void onOAStart() {
+                    setRequesting(true);
+                }
+
+                @Override
+                public void onLoginSuccess(OALoginResponse oaLoginResponse) {
+                    saveOALoginResponse(oaLoginResponse);
+                    sendLoginSuccessBroadcast(oaLoginResponse);
+                    resultFinish(oaLoginResponse);
+                }
+
+                @Override
+                public void onLoginFailure(String msg) {
+                    toast(msg);
+                }
+
+                @Override
+                public void onOAError(String msg) {
+                    toast(msg);
+                }
+
+                @Override
+                public void onOAFinish() {
+                    setRequesting(false);
+                }
+
+                @Override
+                public void onOAExceptionFinish() {
+                    toast(getString(R.string.login_time_out));
+                    setRequesting(false);
+                }
+
+
+            }, serverType);
+        }
+
+
     }
 
     private void toast(String msg) {
@@ -253,11 +314,25 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             return;
         }
 
-        String url;
-        if (isTest) {
-            url = "http://192.168.1.24/";
+        String url = "";
+        if (serverType == -1) {
+            if (isTest) {
+                url = "http://192.168.1.24/";
+            } else {
+                url = "http://oa.jiuan.com/";
+            }
         } else {
-            url = "http://oa.jiuan.com/";
+            switch (serverType) {
+                case OAServer.JIUAN:
+                    url = "http://oa.jiuan.com/";
+                    break;
+                case OAServer.JIUAN_TEST:
+                    url = "http://192.168.1.24/";
+                    break;
+                case OAServer.BLOOMSKY:
+                    url = "http://192.168.1.23/";
+                break;
+            }
         }
 
         // 开启浏览器

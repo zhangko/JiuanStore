@@ -15,8 +15,11 @@ public interface LoginProtocol {
     /** 登录类型 */
     public static final String LOGIN_TYPE = "login_type";
 
-    /** 测试服务器 */
+    @Deprecated/** 测试服务器 */
     public static final String IS_TEST = "is_test";
+
+    /** 服务器类型 */
+    public static final String SERVER_TYPE = "server_type";
 
     /**
      * 开启登录页,如果已经存在人员信息,直接返回人员信息.

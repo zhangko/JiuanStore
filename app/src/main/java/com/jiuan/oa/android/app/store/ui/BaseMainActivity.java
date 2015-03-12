@@ -19,6 +19,7 @@ import com.jiuan.oa.android.library.access.OAAccessClient;
 import com.jiuan.oa.android.library.access.OAAccessHttpResponseHandler;
 import com.jiuan.oa.android.library.access.OAAllAccessResponse;
 import com.jiuan.oa.android.library.http.login.OALoginResponse;
+import com.jiuan.oa.android.library.protocol.login.LoginProtocol;
 import com.jiuan.oa.android.library.ui.login.LoginActivity;
 
 import java.util.ArrayList;
@@ -41,10 +42,7 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
 
     private int lastSelect = -1;
 
-    /**
-     * 是否为测试
-     */
-    protected abstract boolean isTest();
+    protected abstract int serverType();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +151,7 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
     private void startLoginActivityForResult() {
         Intent intent = new Intent(BaseMainActivity.this, LoginActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putBoolean("is_test", isTest());
+        bundle.putInt(LoginProtocol.SERVER_TYPE, serverType());
         intent.putExtras(bundle);
         startActivityForResult(intent, 0);
     }
@@ -193,7 +191,7 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
             public void onOAExceptionFinish() {
                 Toast.makeText(BaseMainActivity.this, getString(R.string.time_out), Toast.LENGTH_SHORT).show();
             }
-        }, isTest());
+        }, serverType());
     }
 
     /**

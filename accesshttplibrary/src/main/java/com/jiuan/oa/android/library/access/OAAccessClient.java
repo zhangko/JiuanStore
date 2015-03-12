@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.jiuan.oa.android.library.http.HeadInfo;
 import com.jiuan.oa.android.library.http.OAClient;
+import com.jiuan.oa.android.library.http.OAServer;
 import com.loopj.android.http.RequestHandle;
 
 public class OAAccessClient {
@@ -12,20 +13,36 @@ public class OAAccessClient {
 
     }
 
-    public static RequestHandle requestAllAccess(Context context, String account, String userID, String accessKey, String timestamp, OAAccessHttpResponseHandler responseHandler, boolean isTest) {
-        OAAccessRequest helper = buildRequest(context, account, userID, accessKey, timestamp, "0", responseHandler, isTest);
-        String path = OAAccessRequest.PATH_TEST_ALL_ACCESS;
-        if (!isTest) {
-            path = OAAccessRequest.PATH_ALL_ACCESS;
+    public static RequestHandle requestAllAccess(Context context, String account, String userID, String accessKey, String timestamp, OAAccessHttpResponseHandler responseHandler, int server) {
+        OAAccessRequest helper = buildRequest(context, account, userID, accessKey, timestamp, "0");
+        String path = "";
+        switch (server) {
+            case OAServer.JIUAN:
+                path = OAAccessRequest.PATH_JIUAN_ALL_ACCESS;
+                break;
+            case OAServer.JIUAN_TEST:
+                path = OAAccessRequest.PATH_JIUAN_TEST_ALL_ACCESS;
+                break;
+            case OAServer.BLOOMSKY:
+                path = OAAccessRequest.PATH_BLOOMSKY_ALL_ACCESS;
+                break;
         }
         return buildClient().post(context, helper.getPathWithHeadInfo(path), helper.getRequestParams(), responseHandler);
     }
 
-    public static RequestHandle requestOneAccess(Context context, String account, String userID, String accessKey, String timestamp, String resourceCode, OAAccessHttpResponseHandler responseHandler, boolean isTest) {
-        OAAccessRequest helper = buildRequest(context, account, userID, accessKey, timestamp, resourceCode, responseHandler, isTest);
-        String path = OAAccessRequest.PATH_TEST_ONE_ACCESS;
-        if (!isTest) {
-            path = OAAccessRequest.PATH_ONE_ACCESS;
+    public static RequestHandle requestOneAccess(Context context, String account, String userID, String accessKey, String timestamp, String resourceCode, OAAccessHttpResponseHandler responseHandler, int server) {
+        OAAccessRequest helper = buildRequest(context, account, userID, accessKey, timestamp, resourceCode);
+        String path = "";
+        switch (server) {
+            case OAServer.JIUAN:
+                path = OAAccessRequest.PATH_JIUAN_ONE_ACCESS;
+                break;
+            case OAServer.JIUAN_TEST:
+                path = OAAccessRequest.PATH_JIUAN_TEST_ONE_ACCESS;
+                break;
+            case OAServer.BLOOMSKY:
+                path = OAAccessRequest.PATH_BLOOMSKY_ONE_ACCESS;
+                break;
         }
         return buildClient().post(context, helper.getPathWithHeadInfo(path), helper.getRequestParams(), responseHandler);
     }
@@ -34,7 +51,7 @@ public class OAAccessClient {
         OAClient.getInstance().cancelRequests(context, mayInterruptIfRunning);
     }
 
-    private static OAAccessRequest buildRequest(Context context, String account, String userID, String accessKey, String timestamp, String resourceCode, OAAccessHttpResponseHandler responseHandler, boolean isTest) {
+    private static OAAccessRequest buildRequest(Context context, String account, String userID, String accessKey, String timestamp, String resourceCode) {
         OAAccessRequest helper = new OAAccessRequest();
         HeadInfo.Builder builder = new HeadInfo.Builder(context).account(account);
         helper.setHeadInfo(builder.build());

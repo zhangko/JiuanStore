@@ -5,11 +5,11 @@ import com.loopj.android.http.RequestParams;
 
 public abstract class OARequest {
 
-    public static final String PATH_ROOT_JIUAN = "https://service.oa.jiuan-roa.com";
+    public static final String PATH_ROOT_JIUAN = "https://oa.jiuan.com:4433";
 
     public static final String PATH_ROOT_JIUAN_TEST = "https://192.168.1.24";
 
-    public static final String PATH_ROOT_BLOOMSKY = "https://192.168.1.23";
+    public static final String PATH_ROOT_BLOOMSKY = "https://192.168.1.155";
 
     private static final String CONTENT = "content";
 

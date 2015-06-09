@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
@@ -161,12 +162,15 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
      * 注意:现在的处理逻辑为如果用户的权限变动了,只有注销后重新登录后才可以刷新.
      */
     private void getAccess(OALoginResponse info) {
+        Log.d("getAccess", "获取全部权限");
         Long tsLong = System.currentTimeMillis() / 1000;
         String ts = tsLong.toString();
         OAAccessClient.requestAllAccess(this, info.getAccount(), info.getUserID(), info.getAccessKey(), ts, new OAAccessHttpResponseHandler() {
 
             @Override
             public void onOASuccess(String value) {
+                Log.d("onOASuccess", "获取全部权限");
+
                 SharedPreferences pref = getSharedPreferences(MAIN_PREFERENCES, MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("OAAllAccessResponse[]", value);
@@ -178,17 +182,20 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
 
             @Override
             public void onAccessFailure(String msg) {
+                Log.d("onAccessFailure", "获取全部权限");
                 Toast.makeText(BaseMainActivity.this, msg, Toast.LENGTH_SHORT).show();
                 startLoginActivityForResult();
             }
 
             @Override
             public void onOAError(String value) {
+                Log.d("onOAError", "获取全部权限");
                 Toast.makeText(BaseMainActivity.this, value, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onOAExceptionFinish() {
+                Log.d("onOAExceptionFinish", "获取全部权限");
                 Toast.makeText(BaseMainActivity.this, getString(R.string.time_out), Toast.LENGTH_SHORT).show();
             }
         }, serverType());

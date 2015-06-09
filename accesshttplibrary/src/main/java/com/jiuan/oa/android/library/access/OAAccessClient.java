@@ -65,6 +65,8 @@ public class OAAccessClient {
     private static OAClient buildClient() {
         OAClient client = OAClient.getInstance();
         client.setSSLSocketFactory();
+        // TODO 临时设置
+        client.getClient().setTimeout(30*1000);
         return client;
     }
 

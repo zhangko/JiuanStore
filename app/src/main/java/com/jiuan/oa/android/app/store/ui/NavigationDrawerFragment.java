@@ -130,8 +130,12 @@ public class NavigationDrawerFragment extends LoginCallbackFragment {
         });
         mDrawerListView.addFooterView(mNavigationFooterView);
 
+        //添加公告栏选项
+
         mNavigationAdapter = new NavigationAdapter(getActivity(), new String[]{
-                getString(R.string.navigation_item_store_home)
+                getString(R.string.navigation_item_store_home),
+                getString(R.string.navigation_item_notice)
+
         });
         mNavigationAdapter.setItemChecked(mCurrentSelectedPosition);
         mDrawerListView.setAdapter(mNavigationAdapter);
@@ -273,6 +277,9 @@ public class NavigationDrawerFragment extends LoginCallbackFragment {
         switch (position) {
             case 0:
                 mTitle = getString(R.string.navigation_item_store_home);
+                break;
+            case 1:
+                mTitle = "公告栏";
                 break;
         }
     }

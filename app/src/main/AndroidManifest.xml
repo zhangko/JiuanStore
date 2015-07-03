@@ -32,6 +32,12 @@
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/Theme.JiuanStore.Settings" />
+        <activity android:name=".ui.NoticeActivity"
+            android:label="公告栏"
+            android:theme="@style/Theme.JiuanStore.Settings">
+
+            </activity>
+
 
         <receiver android:name=".receivers.InstalledReceiver">
             <intent-filter>

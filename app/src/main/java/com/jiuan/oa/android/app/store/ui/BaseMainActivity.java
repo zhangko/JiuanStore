@@ -14,6 +14,7 @@ import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.jiuan.oa.android.app.store.BuildConfig;
 import com.jiuan.oa.android.app.store.R;
+import com.jiuan.oa.android.app.store.ui.widget.NoticeFragMent;
 import com.jiuan.oa.android.app.store.util.DownloadUtils;
 import com.jiuan.oa.android.app.store.util.LogUtils;
 import com.jiuan.oa.android.library.access.OAAccessClient;
@@ -224,10 +225,15 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
                 fragment = new StoreHomeFragment();
                 ((StoreHomeFragment) fragment).setSubject(this);
                 break;
+            //添加公告栏
+            case 1:
+               fragment = new NoticeFragMent();
+                break;
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
         lastSelect = position;
+
     }
 
     @Override

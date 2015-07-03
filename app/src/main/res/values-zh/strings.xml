@@ -2,6 +2,7 @@
 <resources>
     <string name="navigation_item_store_home">首页</string>
     <string name="navigation_item_settings">设置</string>
+    <string name="navigation_item_notice">公告栏</string>
     <string name="network_tip">请开启网络</string>
     <string name="wifi_tip">请开启WIFI</string>
     <string name="state_install">安装</string>

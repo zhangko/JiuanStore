@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.jiuan.oa.android.app.store.BuildConfig;
+import com.jiuan.oa.android.app.store.JiuanStoreApplication;
 import com.jiuan.oa.android.app.store.R;
+import com.jiuan.oa.android.app.store.noticehttplibrary.NoticeClient;
+import com.jiuan.oa.android.app.store.noticehttplibrary.NoticeResponseHandler;
 import com.jiuan.oa.android.app.store.ui.widget.NoticeFragMent;
 import com.jiuan.oa.android.app.store.util.DownloadUtils;
 import com.jiuan.oa.android.app.store.util.LogUtils;
@@ -44,6 +48,8 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
 
     private int lastSelect = -1;
 
+    private OALoginResponse info;
+
     protected abstract int serverType();
 
     @Override
@@ -58,12 +64,16 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
         // Set up the drawer.
         drawerFragment.setUp(R.id.navigation_drawer, R.id.toolbar_main, (DrawerLayout) findViewById(R.id.drawer_layout));
         drawerFragment.setSubject(this);
+        //sendTokenRequest();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         checkState();
+        sendTokenRequest();
+
+
     }
 
     @Override
@@ -107,7 +117,7 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
         SharedPreferences mPreferences = getSharedPreferences(LoginActivity.LOGIN_PREFERENCES, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPreferences.getString("OALoginResponse", "");
-        OALoginResponse info = gson.fromJson(json, OALoginResponse.class);
+         info = gson.fromJson(json, OALoginResponse.class);
         if (info == null) {
             LogUtils.LOGD(TAG, "注销状态");
             logout();
@@ -140,6 +150,8 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
      * 检查新版本
      */
     private void checkVersion() {
+
+        Log.d("checkVersion","checkVersion");
         if (firstTime) {
             LogUtils.LOGD(TAG, "自动检查最新版本");
             firstTime = false;
@@ -151,6 +163,7 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
      * 打开登录界面
      */
     private void startLoginActivityForResult() {
+
         Intent intent = new Intent(BaseMainActivity.this, LoginActivity.class);
         Bundle bundle = new Bundle();
         bundle.putInt(LoginProtocol.SERVER_TYPE, serverType());
@@ -240,6 +253,41 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
     public void onSettingsClick() {
         Intent intent = new Intent(BaseMainActivity.this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    //添加公告栏小米推送请求
+    private void sendTokenRequest() {
+        SharedPreferences mPreferences = getSharedPreferences(LoginActivity.LOGIN_PREFERENCES, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPreferences.getString("OALoginResponse", "");
+        info = gson.fromJson(json, OALoginResponse.class);
+        if (info == null) {
+            LogUtils.LOGD(TAG, "注销状态");
+            logout();
+            startLoginActivityForResult();
+        }else {
+            Log.v("INFO","  " + info.toString());
+
+
+            sendToken(info.getAccount(),info.getAccount(),info.getAccessKey());
+        }
+    }
+
+    public  void sendToken(String account,String account1,String accesskey){
+        String token = JiuanStoreApplication.LoadToken(this);
+        if (TextUtils.isEmpty(token)) {
+            Log.v("token值是：", "未获得");
+            return;
+        } else {
+            Log.v("token值是：", token);
+        }
+        NoticeClient.requestToken(this, account, account1, accesskey, token, info.getUserID(), 2, new NoticeResponseHandler(){
+            @Override
+            public void onOASuccess(String value){
+                Log.d("NoticeClient"," 请求小米推送请求");
+
+            }
+        });
     }
 
 }

@@ -14,14 +14,17 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.util.Log;
 
 public class DownloadUtils {
 
     public static void checkVersion(final Context context, final String appName) {
+        Log.d("DownloadcheckVersion","checkVersion");
         StoreClient.requestSearch(context, appName, new StoreSearchHttpResponseHandler() {
 
             @Override
             public void onStoreSearchSuccess(StoreSearchBody[] storeSearchBody) {
+                Log.d("onStoreSearchSuccess","onStoreSearchSuccess");
                 super.onStoreSearchSuccess(storeSearchBody);
                 String packageName = null;
                 int versionCode = 1;
@@ -29,11 +32,13 @@ public class DownloadUtils {
                     PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
                     packageName = packageInfo.packageName;
                     versionCode = packageInfo.versionCode;
+                    Log.d("versionCode"," " + versionCode);
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
                 }
                 for (StoreSearchBody body : storeSearchBody) {
                     if (update(context, body, appName, packageName, versionCode)) {
+                        Log.d("StoreSearchBody","StoreSearchBody");
                         break;
                     }
                 }
@@ -45,6 +50,7 @@ public class DownloadUtils {
         if (body.getId() != null && body.getId().equals(appName)
                 && body.getAppIdentifier() != null && body.getAppIdentifier().equals(packageName)
                 && body.getVersion() != null && Integer.parseInt(body.getVersion()) > versionCode) {
+            Log.d("update","发现新版本");
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("升级").setMessage("发现新的版本")
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {

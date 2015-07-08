@@ -107,6 +107,7 @@
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="answers-1.1.0" level="project" />
+    <orderEntry type="library" exported="" name="MiPush_SDK_Client_2_2_15_sdk" level="project" />
     <orderEntry type="library" exported="" name="fabric-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="gson-2.3" level="project" />

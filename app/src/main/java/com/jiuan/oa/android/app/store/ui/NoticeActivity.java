@@ -1,6 +1,7 @@
 package com.jiuan.oa.android.app.store.ui;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,8 @@ import org.apache.http.Header;
  * Created by ZhangKong on 2015/6/26.
  */
 public class NoticeActivity extends BaseActivity {
+
+    private int INTENT_TYPE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +38,11 @@ public class NoticeActivity extends BaseActivity {
         String accesskey = info.getAccessKey();
         String userid = info.getUserID();
         String titleID = getIntent().getStringExtra("titleID");
+        INTENT_TYPE = getIntent().getIntExtra("Type",0);
         Log.d("MSG","accesskey:" + accesskey);
         Log.d("MSG","userid:" + userid);
 
-        NoticeClient.requestNoticeContent(this,info.getAccount(),userid,accesskey,titleID, new NoticeResponseHandler(this){
+        NoticeClient.requestNoticeContent(this,info.getAccount(),userid,accesskey,titleID, new NoticeResponseHandler(){
             @Override
             public void onOASuccess(String value) {
 
@@ -81,9 +85,20 @@ public class NoticeActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                Log.d("MSG","进入了返回按键");
+                if(INTENT_TYPE == 1){
+                    this.finish();
+                }
+                if(INTENT_TYPE == 2){
+                    Intent intent = new Intent(NoticeActivity.this,MainActivity.class);
+                    startActivity(intent);
+                }
+                break;
+
             default:
-                return super.onOptionsItemSelected(item);
+                break;
+
         }
+        return super.onOptionsItemSelected(item);
     }
 }

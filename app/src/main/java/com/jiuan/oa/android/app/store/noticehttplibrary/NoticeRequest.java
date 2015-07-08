@@ -18,6 +18,8 @@ public class NoticeRequest extends OARequest {
 
     public static String PATH_NOTICE_CONTENT = "https://oa.jiuan.com:4433/MobileOfficeAutomationAPI/GGBInformationWeb.ashx";
 
+    public static String PATH_NOTICE_PUSH = "https://oa.jiuan.com:4433/MobileOfficeAutomationAPI/RegisteredToken.ashx";
+
     public static int NUMBER_PER_PAGE = 12;
 
     @Override
@@ -39,7 +41,6 @@ public class NoticeRequest extends OARequest {
     private String timestamp;
 
     private int pagesize;
-
 
     public String getUserID() {
         return userID;

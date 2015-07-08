@@ -30,8 +30,8 @@ android {
         applicationId "com.jiuan.oa.android.app.store"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 6
-        versionName "1.1.4"
+        versionCode 7
+        versionName "1.1.8"
 
     }
     buildTypes {
@@ -44,15 +44,15 @@ android {
     productFlavors {
         jiuantest {
             applicationId "com.jiuan.oa.android.app.store.test"
-            versionName "1.1.4-jiuan-test"
+            versionName "1.1.8-jiuan-test"
         }
         jiuan {
             applicationId "com.jiuan.oa.android.app.store"
-            versionName "1.1.4-jiuan"
+            versionName "1.1.8-jiuan"
         }
         bloomsky {
             applicationId "com.jiuan.oa.android.app.store"
-            versionName "1.1.4-bloomsky"
+            versionName "1.1.8-bloomsky"
         }
     }
 }
@@ -69,4 +69,5 @@ dependencies {
         transitive = true;
     }
     // compile files('libs/universal-image-loader-1.9.4.jar')
+    compile files('libs/MiPush_SDK_Client_2_2_15_sdk.jar')
 }

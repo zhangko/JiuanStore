@@ -100,7 +100,7 @@ public class NoticeListAdapter extends ArrayAdapter {
     }
 
     public void addItem(List<NoticeResponse> items) {
-       checkListNull();
+       // checkListNull();
         mfilelist.addAll(items);
         notifyDataSetChanged();
     }

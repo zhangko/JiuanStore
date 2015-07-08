@@ -151,6 +151,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     }
 
     private void sendLoginSuccessBroadcast(OALoginResponse oaLoginResponse) {
+
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
         bundle.putParcelable("OALoginResponse", oaLoginResponse);
@@ -163,6 +164,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     }
 
     private void sendExitBroadcast() {
+
         Intent intent = new Intent();
         intent.setAction(LoginProtocol.ACTION_EXIT);
         if (android.os.Build.VERSION.SDK_INT >= 12) {

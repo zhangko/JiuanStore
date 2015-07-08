@@ -1,6 +1,7 @@
 package com.jiuan.oa.android.app.store.noticehttplibrary;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,12 +26,6 @@ public class NoticeResponseHandler extends OAHttpResponseHandler {
      */
     public static final String FAILURE_230 = "230";
 
-    private Activity mContext;
-
-    public NoticeResponseHandler(Activity context) {
-        mContext = context;
-    }
-
     @Override
     public void onOAFailure(String msg) {
         if (msg.equals(FAILURE_210_1)) {
@@ -45,17 +40,5 @@ public class NoticeResponseHandler extends OAHttpResponseHandler {
     public void onInfoFailure(String value) {
         Log.d("MSG",value);
 
-
-
-    }
-
-    @Override
-    public void onOAError(String value) {
-        Toast.makeText(mContext, value, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onOAExceptionFinish() {
-        Toast.makeText(mContext, "网络连接异常", Toast.LENGTH_SHORT).show();
     }
 }

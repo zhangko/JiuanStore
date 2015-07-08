@@ -1,6 +1,7 @@
 package com.jiuan.oa.android.app.store.ui.widget;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import com.jiuan.oa.android.app.store.noticehttplibrary.NoticeResponse;
 import com.jiuan.oa.android.app.store.noticehttplibrary.NoticeResponseHandler;
 import com.jiuan.oa.android.app.store.noticehttplibrary.ReturnValueResponse;
 import com.jiuan.oa.android.app.store.ui.NoticeActivity;
+import com.jiuan.oa.android.library.http.OAHttpResponseHandler;
 import com.jiuan.oa.android.library.http.login.OALoginResponse;
 import com.jiuan.oa.android.library.ui.login.LoginActivity;
 
@@ -60,11 +62,11 @@ public class NoticeFragMent  extends Fragment implements SwipeRefreshLayout.OnRe
 
     private TextView lastItem;
 
-    private List<NoticeResponse>  listTotalNotice = new ArrayList<NoticeResponse>();
+    private List<NoticeResponse>  mlistTotalNotice = new ArrayList<NoticeResponse>();
 
     private  boolean isFirst = true;
 
-    protected NoticeResponseHandler mHandler = new NoticeResponseHandler(getActivity()){
+    protected NoticeResponseHandler mHandler = new NoticeResponseHandler(){
         @Override
         public void onOASuccess(String value) {
 
@@ -73,20 +75,20 @@ public class NoticeFragMent  extends Fragment implements SwipeRefreshLayout.OnRe
             Log.d("MSG","  " + returnValueResponse.getNoticeList());
             leftSize = returnValueResponse.getLastSize();
             Log.d("MSG","  " +  leftSize);
-            listTotalNotice = gson.fromJson(returnValueResponse.getNoticeList().toString(), new TypeToken<List<NoticeResponse>>() {
+            List<NoticeResponse> listTotalNotice = gson.fromJson(returnValueResponse.getNoticeList().toString(), new TypeToken<List<NoticeResponse>>() {
             }.getType());
 
             Log.d("MSG","一共有公告：" + listTotalNotice.size());
             Log.d("MSG",listTotalNotice.get(0).getTitleName());
 
-            if(isFirst){
+            adapter.addItem(listTotalNotice);
 
-                adapter = new NoticeListAdapter(getActivity(),R.layout.layout_notice_list,listTotalNotice);
-                listView = (ListView)getActivity().findViewById(R.id.noticelist);
-                listView.setAdapter(adapter);
+
+            /*if(isFirst){
+
+
             }else {
-                adapter.addItem(listTotalNotice);
-            }
+            }*/
 
             listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                 @Override
@@ -96,7 +98,7 @@ public class NoticeFragMent  extends Fragment implements SwipeRefreshLayout.OnRe
 
                             if(view.getLastVisiblePosition() == (view.getCount() - 1)){
                                 if(leftSize != 0){
-                                  String times =  listTotalNotice.get(listTotalNotice.size() - 1).getTimeStamp();
+                                  String times =  mlistTotalNotice.get(mlistTotalNotice.size() - 1).getTimeStamp();
                                     isFirst = false;
                                     requstData(times);
                                 }else {
@@ -116,9 +118,11 @@ public class NoticeFragMent  extends Fragment implements SwipeRefreshLayout.OnRe
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String titleID =listTotalNotice.get(position).getTitleID();
+                    String titleID =mlistTotalNotice.get(position).getTitleID();
                     Intent  intent = new Intent(getActivity(), NoticeActivity.class);
                     intent.putExtra("titleID",titleID);
+                    //添加判断是推送传入还是通知列表跳转到公告栏的
+                    intent.putExtra("Type",1);
                     startActivity(intent);
                     Log.d("MSG","开始显示ListView");
 
@@ -152,16 +156,19 @@ public class NoticeFragMent  extends Fragment implements SwipeRefreshLayout.OnRe
 
         }
 
+        @Override
+        public void onOAExceptionFinish() {
+            Toast.makeText(getActivity(), "网络连接异常", Toast.LENGTH_SHORT).show();
+        }
+
      };
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
+        Log.d("onCreate","onCreate");
         mpage = 1;
         requstData();
-
-
 
     }
     @Override
@@ -177,21 +184,27 @@ public class NoticeFragMent  extends Fragment implements SwipeRefreshLayout.OnRe
 
         lastItem = (TextView)view.findViewById(R.id.lastItem);
         Log.d("MSG","开始设置listview");
+
+
         return view;
 
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
+        listView = (ListView)getActivity().findViewById(R.id.noticelist);
+        adapter = new NoticeListAdapter(getActivity(),R.layout.layout_notice_list,mlistTotalNotice);
+        listView.setAdapter(adapter);
     }
 
 
     @Override
     public void onRefresh() {
 
+        mlistTotalNotice.clear();
         adapter.clear();
-       listTotalNotice.clear();
+//        adapter = null;
+//        mlistTotalNotice = null;
         isFirst = true;
         mpage = 1;
         requstData();
@@ -223,7 +236,7 @@ public class NoticeFragMent  extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
     private void  requstData(String timestamp){
-        SharedPreferences preferences=getActivity().getSharedPreferences(LoginActivity.LOGIN_PREFERENCES,getActivity().MODE_PRIVATE);
+        SharedPreferences preferences=getActivity().getSharedPreferences(LoginActivity.LOGIN_PREFERENCES, Context.MODE_PRIVATE);
         String oaResponse=preferences.getString("OALoginResponse","");
         Log.d("MSG",""+oaResponse);
         Gson gson=new Gson();

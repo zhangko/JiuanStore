@@ -43,6 +43,7 @@ public class StoreSearchHttpResponseHandler extends JsonHttpResponseHandler {
     @Override
     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
         Log.d("StoreonSuccess","onSuccess");
+        Log.d("StoreonSuccess","response:" + response.toString());
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         StoreSearchResponse storeResponse = gson.fromJson(response.toString(), StoreSearchResponse.class);
 

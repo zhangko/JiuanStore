@@ -55,8 +55,10 @@ public class NoticeActivity extends BaseActivity {
                 TextView titleText = (TextView)findViewById(R.id.notice_title);
                 TextView contentText = (TextView)findViewById(R.id.notice_content);
 
+                 String content = noticeResponse.getContest();
+                String content_final = content.replace("\\n","\n");
                 titleText.setText(noticeResponse.getTitleName());
-                contentText.setText(noticeResponse.getContest());
+                contentText.setText(content_final);
 
 
             }

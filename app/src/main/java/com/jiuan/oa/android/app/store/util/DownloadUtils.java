@@ -37,6 +37,12 @@ public class DownloadUtils {
                     e.printStackTrace();
                 }
                 for (StoreSearchBody body : storeSearchBody) {
+                    Log.d("StoreSearchBody","bodyname" + body.getName());
+                    Log.d("StoreSearchBody","bodyid" + body.getId());
+                    Log.d("StoreSearchBody","identifier" +  body.getAppIdentifier());
+                    Log.d("StoreSearchBody","packageName" + packageName);
+                    Log.d("StoreSearchBody","versioncode" + body.getVersion());
+
                     if (update(context, body, appName, packageName, versionCode)) {
                         Log.d("StoreSearchBody","StoreSearchBody");
                         break;

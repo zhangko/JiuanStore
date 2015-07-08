@@ -267,8 +267,6 @@ public abstract class BaseMainActivity extends BaseActivity implements Navigatio
             startLoginActivityForResult();
         }else {
             Log.v("INFO","  " + info.toString());
-
-
             sendToken(info.getAccount(),info.getAccount(),info.getAccessKey());
         }
     }
